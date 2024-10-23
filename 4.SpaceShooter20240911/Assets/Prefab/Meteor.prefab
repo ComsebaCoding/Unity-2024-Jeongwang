@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  hitSound: {fileID: 8300000, guid: 5c7d80eecc9452f42b14e6b92570b117, type: 3}
   direction: {x: 0, y: 0, z: 0}
   speed: 3
   ItemPrefab: {fileID: 975620431594215351, guid: ad477017ca89c0d448991170732a875f, type: 3}

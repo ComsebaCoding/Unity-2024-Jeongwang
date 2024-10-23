@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     Rigidbody2D myRigid;
     Animator myAnimator;
 
+    public AudioClip ShotSound;
+    public AudioClip HitSound;
+    public AudioClip DestroySound;
+
     Vector2 direction;
     public float speed = 3.0f;
     private bool isDie = false;
@@ -24,7 +28,12 @@ public class Player : MonoBehaviour
     public float specialShootCoolTime = 2.5f; // 특수사격 발사 주기 쿨타임
 
     public GameObject chargeLaserPrefab;    // 차지사격 프리팹
-    public float chargingTimer = 0.0f;      // 차징 기모으는 시간
+    private float chargingTimer = 0.0f;     // 기모으기 타이머
+    public float chargingLimitTime = 1.5f;  // 기모으는 시간
+
+    public GameObject homingLaserPrefab;    // 유도레이저 프리팹
+    private float homingTimer = 0.0f;   // 호밍 발사 주기 타이머
+    public float homingCoolTime = 5.0f; // 호밍 쿨타임
 
     // Start is called before the first frame update
     void Start()
@@ -68,22 +77,23 @@ public class Player : MonoBehaviour
 
 
         // TODO : 터치 입력으로 변경
-
         if (Input.GetKey(KeyCode.Space))
         {
-            chargingTimer += Time.deltaTime;
-            
-            //shootTimer += Time.deltaTime;
-            //if (shootTimer >= shootCoolTime)
-            //{
-            //    shootTimer -= shootCoolTime;
+            chargingTimer += Time.deltaTime;    
+            /*
+            shootTimer += Time.deltaTime;
+            if (shootTimer >= shootCoolTime)
+            {
+                shootTimer -= shootCoolTime;
                 // 플레이어 위치에 투사체 생성
-            //    Instantiate(laserPrefab, transform.position, transform.rotation);
-            //}          
+                Instantiate(laserPrefab, transform.position, transform.rotation);
+            } */        
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            if (chargingTimer > 1.5f)
+            if (ShotSound != null)
+                GameManager.instance.PlayOneShot(ShotSound);
+            if (chargingTimer >= chargingLimitTime)
             {
                 Instantiate(chargeLaserPrefab, 
                     transform.position, transform.rotation);
@@ -101,7 +111,9 @@ public class Player : MonoBehaviour
         specialShootTimer += Time.deltaTime;
         // V 키를 눌러 특수 레이저 발동
         if (Input.GetKey(KeyCode.V) && energy > 0)
-        {          
+        {
+            if (ShotSound != null)
+                GameManager.instance.PlayOneShot(ShotSound);
             if (specialShootTimer >= specialShootCoolTime)
             {
                 --energy;
@@ -109,6 +121,15 @@ public class Player : MonoBehaviour
                 // 플레이어 위치에 투사체 생성
                 Instantiate(specialLaserPrefab, transform.position, transform.rotation);
             }
+        }
+
+        homingTimer += Time.deltaTime;
+        if (homingTimer >= homingCoolTime)
+        {
+            if (ShotSound != null)
+                GameManager.instance.PlayOneShot(ShotSound);
+            homingTimer -= homingCoolTime;
+            Instantiate(homingLaserPrefab, transform.position, transform.rotation);
         }
     }
 
@@ -126,11 +147,14 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             // --hp;
+            GameManager.instance.PlayOneShot(HitSound);
             damageRenderer.sprite = damageSpriteList[--hp];
         }
         // TODO : 체력이 0이 될 경우 게임오버 처리
         if (hp <= 0 && !isDie)
         {
+            if (DestroySound != null)
+                GameManager.instance.PlayOneShot(DestroySound);
             myAnimator.SetBool("isDead", true);
             isDie = true;
         }    

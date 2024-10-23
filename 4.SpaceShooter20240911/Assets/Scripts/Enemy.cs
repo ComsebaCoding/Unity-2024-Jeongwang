@@ -5,6 +5,8 @@ using UnityEngine;
 abstract public class Enemy : MonoBehaviour
 {
     public int hp;
+    public AudioClip hitSound;
+
     // Update is called once per frame
     virtual protected void Update()
     {
@@ -16,8 +18,12 @@ abstract public class Enemy : MonoBehaviour
     }
     // 데미지 처리
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        --hp;
+    {        
+        if (other.gameObject.CompareTag("AttackByPlayer"))
+        {
+            GameManager.instance.PlayOneShot(hitSound);
+            --hp;
+        }
         if (hp <= 0)
         {
             OnDead();

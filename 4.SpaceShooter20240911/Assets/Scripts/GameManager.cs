@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager instance = null;
 
     /*
     Awake는 모든 오브젝트가 초기화 되고 나서 호출
@@ -26,8 +26,14 @@ public class GameManager : MonoBehaviour
     // 어웨이크 -> enable 체크 -> 스타트 -> 트리거 -> 컬리젼 -> 업데이트 -> 그림
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
     }
+
+    private AudioSource audioSource;
+    public AudioClip LoseSound;
+    public AudioClip ClickSound;
+    public AudioClip CountSound;
 
     public Player player;
 
@@ -45,6 +51,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
+
         GameOverUI.SetActive(false);
         Time.timeScale = 1.0f;
         Score = 0;
@@ -78,9 +86,17 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverUI;   // 게임 오버 UI
     public void GameOver()
     {
+        audioSource.PlayOneShot(LoseSound);
         Time.timeScale = 0.0f;
         if (Score > HighScore)
             PlayerPrefs.SetInt("HighScore", Score);
         GameOverUI.SetActive(true);
+    }
+
+    // Getter
+    public void PlayOneShot(AudioClip audioclip)
+    {
+        if (audioSource != null && audioclip != null)
+            audioSource.PlayOneShot(audioclip);
     }
 }

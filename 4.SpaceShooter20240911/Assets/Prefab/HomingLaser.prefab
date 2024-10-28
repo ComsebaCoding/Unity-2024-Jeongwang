@@ -145,8 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  HomingLaserDamage: 0
-  HomingRange: {fileID: 6641321271654468955}
+  HomingLaserDamage: 5
 --- !u!1 &6641321271654468955
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,3 +226,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ad1c3441d5d684d958123a399eb1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  EnemyList: []

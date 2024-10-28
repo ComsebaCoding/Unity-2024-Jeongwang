@@ -17,6 +17,8 @@ public class ChargeLaser : Laser
                     e.hp = 0;
                 else
                     e.hp -= ChargeLaserDamage;
+                if (e.hp <= 0)
+                    e.Destruction();
             }
         }
     }

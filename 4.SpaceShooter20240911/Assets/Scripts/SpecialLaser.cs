@@ -17,6 +17,8 @@ public class SpecialLaser : Laser
                     e.hp = 0;
                 else
                     e.hp -= specialDamage;
+                if (e.hp <= 0)
+                    e.Destruction();
             }
         }
     }

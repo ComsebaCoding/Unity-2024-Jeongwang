@@ -44,5 +44,7 @@ public class Meteor : Enemy
 
         if (Random.Range(0,10) < 3)
             Instantiate(ItemPrefab, transform.position, Quaternion.identity);
+
+        ++GameManager.instance.Score;
     }
 }

@@ -26,10 +26,15 @@ abstract public class Enemy : MonoBehaviour
         }
         if (hp <= 0)
         {
-            OnDead();
-            Destroy(gameObject);
+            Destruction();
         }
     }
     // 적이 파괴되었을 때
     abstract protected void OnDead();
+
+    public void Destruction()
+    {
+        OnDead();
+        Destroy(gameObject);
+    }
 }

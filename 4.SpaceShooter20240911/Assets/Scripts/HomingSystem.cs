@@ -4,44 +4,39 @@ using UnityEngine;
 
 public class HomingSystem : MonoBehaviour
 {
-    Vector3 TargetPosition;
-    List<Vector3> EnemyPositionList;
+    public GameObject Target;
+    public List<GameObject> EnemyList;
     private void Update()
     {
-        TargetChase();
+        TargetSetting();
     }
-    private void OnCollisionStay2D(Collision2D other)
+
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyPositionList.Add(other.gameObject.transform.position);
+            EnemyList.Add(other.gameObject);
         }
-        TargetChase();
+        TargetSetting();
     }
 
-
-    private void TargetChase()
+    private void TargetSetting()
     {        
-        float min_length = 12.0f;
-        for (int i = 0; i < EnemyPositionList.Count; ++i)
+        float min_length = 20.0f;
+        foreach (GameObject enemy in EnemyList)
         {
-            Vector3 v = EnemyPositionList[i] - transform.position;
-            float length = v.sqrMagnitude;
+            float length = Vector3.Distance(transform.position, enemy.transform.position);
             if (min_length > length)
             {
                 min_length = length;
-                TargetPosition = v;
+                Target = enemy;
             }
         }
     }
-    public Vector3 GetHomingTargetPosition()
-    {
-        TargetChase();
-        return TargetPosition;
-    }
 
-    public bool isTarget()
+    public GameObject GetHomingTarget()
     {
-        return (EnemyPositionList.Count != 0);
+        TargetSetting();
+        return Target;
     }
 }

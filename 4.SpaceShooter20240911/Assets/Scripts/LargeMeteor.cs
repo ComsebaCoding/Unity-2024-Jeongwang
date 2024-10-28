@@ -16,5 +16,6 @@ public class LargeMeteor : Meteor
                 meteorPrefab, transform.position, Quaternion.identity);
             meteor.direction = Random.insideUnitCircle.normalized;
         }
+        GameManager.instance.Score += 2;
     }
 }

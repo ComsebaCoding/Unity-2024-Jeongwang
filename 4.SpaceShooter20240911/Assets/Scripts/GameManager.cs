@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour
     float MeteorSpawnTimer = 0.0f;  // 메테오 생성 쿨타임 타이머
     public float MeteorSpawnCoolTime = 3.0f; // 메테오 생성 쿨타임 지정
 
-    public static int Score;
+    public int Score = 0;
     public Text ScoreLabel;
-    public static int HighScore = 0;
+    public int HighScore = 0;
     public Text HighScoreLabel;
 
     // Start is called before the first frame update
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         Score = 0;
         // 하이스코어값 있으면 가져오고 없으면 0 가져와라
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
-        HighScoreLabel.text = HighScore.ToString("D4");
+        HighScoreLabel.text = "HIGHSCORE : " + HighScore.ToString("D5");
     }
 
     // Update is called once per frame

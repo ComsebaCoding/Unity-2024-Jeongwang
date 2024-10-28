@@ -277,7 +277,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 20, y: 15}
+  m_Size: {x: 30, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -431,7 +431,9 @@ MonoBehaviour:
   - {fileID: 8961450665050337453, guid: 371acc212cad0694c805850d553a1a5e, type: 3}
   - {fileID: 8961450665050337453, guid: 371acc212cad0694c805850d553a1a5e, type: 3}
   MeteorSpawnCoolTime: 1
+  Score: 0
   ScoreLabel: {fileID: 806320890}
+  HighScore: 0
   HighScoreLabel: {fileID: 1256652094}
   GameOverUI: {fileID: 923949078}
 --- !u!4 &616424085
@@ -944,7 +946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bd16c72a829b040bf85224a04017bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  hp: 100
   energy: 5
   damageRenderer: {fileID: 1407119718}
   damageSpriteList:
@@ -954,10 +956,105 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a80a52f6b77eec647b925b7fe7aac1c6, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ShotSound: {fileID: 8300000, guid: fc2fc573c5ff1f24b8771a2d089eb340, type: 3}
   HitSound: {fileID: 8300000, guid: 5c7d80eecc9452f42b14e6b92570b117, type: 3}
   DestroySound: {fileID: 8300000, guid: d0694729ff1e2c04393d6d29ce6f2ae0, type: 3}
-  speed: 5
+  speed: 3
   laserPrefab: {fileID: 9113818094453075139, guid: 6ac97354bfe9b794fa80ab5da683cef1, type: 3}
   shootCoolTime: 0.05
   specialLaserPrefab: {fileID: 1024882853411492126, guid: 16643108ba47257409dabee7ab77599e, type: 3}
@@ -965,7 +1062,7 @@ MonoBehaviour:
   chargeLaserPrefab: {fileID: 9113818094453075139, guid: 1642c2901ea88ff428e736825752d7cb, type: 3}
   chargingLimitTime: 1
   homingLaserPrefab: {fileID: 5155995640843855741, guid: 67c41b58fd0ddbe40a6c4c02a4f36d86, type: 3}
-  homingCoolTime: 5
+  homingCoolTime: 1
 --- !u!212 &1052673325
 SpriteRenderer:
   m_ObjectHideFlags: 0

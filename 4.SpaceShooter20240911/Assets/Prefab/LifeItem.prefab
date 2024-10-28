@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3623595534378770961}
   m_Layer: 14
   m_Name: LifeItem
-  m_TagString: Itrem
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

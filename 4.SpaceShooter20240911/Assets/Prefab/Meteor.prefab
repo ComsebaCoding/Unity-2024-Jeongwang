@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02d0141150978a4d9494ac759f9d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
+  hp: 1
   hitSound: {fileID: 8300000, guid: 5c7d80eecc9452f42b14e6b92570b117, type: 3}
   direction: {x: 0, y: 0, z: 0}
   speed: 3

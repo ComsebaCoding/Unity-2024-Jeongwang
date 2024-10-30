@@ -140,16 +140,27 @@ public class Player : MonoBehaviour
             damageRenderer.sprite = damageSpriteList[++hp];
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("AttackByEnemy"))
+        {
+            OnHit();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // --hp;
-            GameManager.instance.PlayOneShot(HitSound);
-            damageRenderer.sprite = damageSpriteList[--hp];
-        }
+            OnHit();
+        }           
+    }
+
+    private void OnHit(int Damage = 1)
+    {
+        hp -= Damage;
+        GameManager.instance.PlayOneShot(HitSound);
+        damageRenderer.sprite = damageSpriteList[hp];
+        
         // TODO : 체력이 0이 될 경우 게임오버 처리
         if (hp <= 0 && !isDie)
         {
@@ -157,7 +168,7 @@ public class Player : MonoBehaviour
                 GameManager.instance.PlayOneShot(DestroySound);
             myAnimator.SetBool("isDead", true);
             isDie = true;
-        }    
+        }
     }
 
     public void OnDead()

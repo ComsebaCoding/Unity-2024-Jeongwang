@@ -22,4 +22,8 @@ public class SpecialLaser : Laser
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 적에 닿아도 안 사라지기 위해 상속받지 않고 내용 없는 함수 재작성
+    }
 }

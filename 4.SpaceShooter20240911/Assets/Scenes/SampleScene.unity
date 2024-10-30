@@ -430,6 +430,7 @@ MonoBehaviour:
   - {fileID: 6968468180485874956, guid: 33f4842d5a6a03f4bab0d51646878d0c, type: 3}
   - {fileID: 8961450665050337453, guid: 371acc212cad0694c805850d553a1a5e, type: 3}
   - {fileID: 8961450665050337453, guid: 371acc212cad0694c805850d553a1a5e, type: 3}
+  - {fileID: 2442120499606769518, guid: 9981a78fa4039bd4882f4f87390e652b, type: 3}
   MeteorSpawnCoolTime: 1
   Score: 0
   ScoreLabel: {fileID: 806320890}
@@ -946,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bd16c72a829b040bf85224a04017bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 5
   energy: 5
   damageRenderer: {fileID: 1407119718}
   damageSpriteList:
@@ -954,101 +955,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 143b719dbfd6c1246be54ea1ba46668c, type: 3}
   - {fileID: 21300000, guid: a83fdc954a1e417468d448e061ecea85, type: 3}
   - {fileID: 21300000, guid: a80a52f6b77eec647b925b7fe7aac1c6, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   ShotSound: {fileID: 8300000, guid: fc2fc573c5ff1f24b8771a2d089eb340, type: 3}

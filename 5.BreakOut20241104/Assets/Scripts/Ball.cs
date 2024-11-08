@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public static int count = 0;
+    public float speed = 5.0f;
+
     public bool playing = false;
 
     Vector2 direction;
@@ -14,13 +17,18 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ++count;
         myRigid = GetComponent<Rigidbody2D>();
         direction = Random.insideUnitCircle.normalized;
-        myRigid.AddForce(direction * force, ForceMode2D.Impulse);
+        //myRigid.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
     public void SetVelocity(Vector2 value)
     {
+        if (myRigid == null)
+        {
+            myRigid = GetComponent<Rigidbody2D>();
+        }
         myRigid.velocity = value;
     }
 
@@ -43,16 +51,23 @@ public class Ball : MonoBehaviour
             }
 
             myRigid.velocity = myRigid.velocity.normalized
-                * GameManager.instance.ballSpeed;
+                * speed
+                * GameManager.instance.BallSpeedScale;
+            
         }
     }
 
-    public void OnDestory()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            GameManager.instance.Damage();
+            Destroy(gameObject);
+        }
     }
+
     public void OnDestroy()
     {
-        Debug.Log("°øÀÌ ºÎ½¤Áü");
+        --count;
     }
 }

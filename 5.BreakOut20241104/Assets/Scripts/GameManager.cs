@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,9 +11,61 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public int hp = 5;
-    public float ballSpeed = 3.0f;
+    public int Life = 5;
+    public float BallSpeedScale = 1.0f;
 
     public Ball ballPrefab;     // origin ball info
     public List<Ball> balls;    // now, in game ball
+
+    public Image LifeUIPrefab;
+    public List<Image> LifeList;
+
+    private void Start()
+    {
+        for (int i = 1; i <= Life; ++i)
+        {
+            LifeList.Add(Instantiate<Image>(LifeUIPrefab,
+                Vector3.zero, Quaternion.identity, 
+                GameObject.Find("Canvas").transform));
+            LifeList[i-1].rectTransform.anchoredPosition = 
+                new Vector3(-275.0f + (i * 100.0f), 485.0f);
+        }
+    }
+
+    public void Damage()
+    {
+        --Life;
+        Image delImage = LifeList[Life];
+        LifeList.RemoveAt(Life);
+        Destroy(delImage.gameObject);
+        if (Life <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void Heal()
+    {
+        ++Life;
+        LifeList.Add(Instantiate<Image>(LifeUIPrefab,
+            Vector3.zero, Quaternion.identity, 
+            GameObject.Find("Canvas").transform));
+        LifeList[Life-1].rectTransform.anchoredPosition = 
+            new Vector3(-275.0f + (Life * 100.0f), 485.0f);
+    }
+
+    public void GameOver()
+    {
+        // 게임 오버 UI 발생 및 재시작 버튼 생성
+    }
+
+    public void RestartGame()
+    {
+        // Scene을 재시작하는 함수
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
+    }
 }

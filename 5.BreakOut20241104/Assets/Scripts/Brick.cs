@@ -34,6 +34,8 @@ public class Brick : MonoBehaviour
 
     void OnDead()
     {
+        // 나중에 여기서 아이템 생성
+
         Destroy(gameObject);
     }
 }

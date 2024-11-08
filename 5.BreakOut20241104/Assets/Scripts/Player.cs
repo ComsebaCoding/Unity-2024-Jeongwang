@@ -41,14 +41,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.balls.Count == 0 &&
-                new_ball == null)
+        if (Ball.count == 0 && new_ball == null)
         {
             new_ball = Instantiate<Ball>
                     (GameManager.instance.ballPrefab
                     , ballPos.position
-                    , Quaternion.identity);
-            GameManager.instance.balls.Add(new_ball);
+                    , Quaternion.identity
+                    , ballPos);
+            // GameManager.instance.balls.Add(new_ball);
         }
 
         if(new_ball != null)
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
                 new_ball.SetVelocity(
                     (new_ball.transform.position
                     - transform.position).normalized
-                    * GameManager.instance.ballSpeed);
+                    * GameManager.instance.BallSpeedScale);
                 new_ball.transform.parent = null;
                 new_ball.playing = true;
                 new_ball = null;
@@ -77,6 +77,15 @@ public class Player : MonoBehaviour
         tmp.x = Mathf.Clamp(transform.position.x, -range, range);
 
         transform.position = tmp;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!other.gameObject.CompareTag("Ball"))
+        {
+            return;
+        }
+        // ?
     }
 
     private void OnTriggerEnter2D(Collider2D other)

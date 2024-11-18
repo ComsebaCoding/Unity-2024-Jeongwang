@@ -53,7 +53,6 @@ public class Ball : MonoBehaviour
             myRigid.velocity = myRigid.velocity.normalized
                 * speed
                 * GameManager.instance.BallSpeedScale;
-            
         }
     }
 

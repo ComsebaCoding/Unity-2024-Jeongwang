@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         transform.Translate(direction * speed * Time.deltaTime);
 
         // 이동 가능 범위 세팅
-        float range = 2.18f - GetSize() * 0.5f;
+        float range = 2.5f - GetSize() * 0.5f;
         Vector3 tmp = transform.position;
         tmp.x = Mathf.Clamp(transform.position.x, -range, range);
 

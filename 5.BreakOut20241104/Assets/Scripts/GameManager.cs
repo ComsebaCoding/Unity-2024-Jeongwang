@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,11 +18,17 @@ public class GameManager : MonoBehaviour
     public Ball ballPrefab;     // origin ball info
     public List<Ball> balls;    // now, in game ball
 
+    public GameObject GameOverUI;
+
     public Image LifeUIPrefab;
     public List<Image> LifeList;
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
+        GameOverUI.SetActive(false);
+
+
         for (int i = 1; i <= Life; ++i)
         {
             LifeList.Add(Instantiate<Image>(LifeUIPrefab,
@@ -57,11 +64,14 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // 게임 오버 UI 발생 및 재시작 버튼 생성
+        Time.timeScale = 0.0f;
+        GameOverUI.SetActive(true);
     }
 
     public void RestartGame()
     {
         // Scene을 재시작하는 함수
+        SceneManager.LoadScene(0);
     }
 
     private void OnDestroy()

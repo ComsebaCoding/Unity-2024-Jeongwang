@@ -39,26 +39,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Damage()
+    public void Damage(int damage = 1)
     {
-        --Life;
-        Image delImage = LifeList[Life];
-        LifeList.RemoveAt(Life);
-        Destroy(delImage.gameObject);
-        if (Life <= 0)
+        if (damage < 0)
         {
-            GameOver();
+            Debug.Log("damage is 0. are you serious?");
+            return;
         }
+        for (int i = 0; i < damage; ++i)
+        {
+            --Life;
+            Image delImage = LifeList[Life];
+            LifeList.RemoveAt(Life);
+            Destroy(delImage.gameObject);
+            if (Life <= 0)
+            {
+                GameOver();
+            }
+        }     
     }
 
-    public void Heal()
+    public void Heal(int heal = 1)
     {
-        ++Life;
-        LifeList.Add(Instantiate<Image>(LifeUIPrefab,
-            Vector3.zero, Quaternion.identity, 
-            GameObject.Find("Canvas").transform));
-        LifeList[Life-1].rectTransform.anchoredPosition = 
-            new Vector3(-275.0f + (Life * 100.0f), 485.0f);
+        if (heal < 0)
+        {
+            Debug.Log("minus healing. are you serious?");
+            return;
+        }
+        for (int i = 0; i < heal; ++i)
+        {
+            ++Life;
+            LifeList.Add(Instantiate<Image>(LifeUIPrefab,
+                Vector3.zero, Quaternion.identity,
+                GameObject.Find("Canvas").transform));
+            LifeList[Life - 1].rectTransform.anchoredPosition =
+                new Vector3(-275.0f + (Life * 100.0f), 485.0f);
+        }
     }
 
     public void GameOver()

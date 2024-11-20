@@ -90,6 +90,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // æ∆¿Ã≈€ √≥∏Æ
+        // æ∆¿Ã≈€ »πµÊ
+        if (other.gameObject.CompareTag("Item"))
+        {
+            Item hitItem = other.gameObject.GetComponent<Item>();
+            hitItem.ActiveItem(this);
+        }
     }
 }

@@ -6,6 +6,7 @@ public class Brick : MonoBehaviour
 {
     public int hp = 3;
     public List<Color> colors;
+    public List<Item> dropItems;
 
     SpriteRenderer mySr;
 
@@ -34,8 +35,12 @@ public class Brick : MonoBehaviour
 
     void OnDead()
     {
-        // 나중에 여기서 아이템 생성
-
+        // 숫자 1~10 중 하나를 뽑아 드랍 확률 조절
+        if (Random.Range(1,11) <= 10) 
+        {
+            Item pickItem = dropItems[Random.Range(0, dropItems.Count)];
+            Instantiate(pickItem, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

@@ -23,8 +23,10 @@ public class GameManager : MonoBehaviour
     public Image LifeUIPrefab;
     public List<Image> LifeList;
 
+    ResourceManager resourceManager;
     private void Start()
     {
+        resourceManager = GetComponent<ResourceManager>();
         Time.timeScale = 1.0f;
         GameOverUI.SetActive(false);
 
@@ -93,5 +95,10 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
+    }
+
+    public ResourceManager GetResource()
+    {
+        return resourceManager;
     }
 }

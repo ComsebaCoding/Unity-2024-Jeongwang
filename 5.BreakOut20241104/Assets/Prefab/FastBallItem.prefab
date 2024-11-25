@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7215964219647825421}
   m_Layer: 0
   m_Name: FastBallItem
-  m_TagString: Item
+  m_TagString: HarmfulItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

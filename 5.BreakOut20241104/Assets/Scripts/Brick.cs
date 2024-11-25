@@ -24,6 +24,7 @@ public class Brick : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            GameManager.instance.GetResource().PlayHit2Sound();
             --hp;
             mySr.color = colors[Mathf.Clamp(hp, 0, colors.Count - 1)];
             if (hp <= 0)

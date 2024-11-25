@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2542654367145417029}
   m_Layer: 0
   m_Name: NoneItem
-  m_TagString: Item
+  m_TagString: BeneficialItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

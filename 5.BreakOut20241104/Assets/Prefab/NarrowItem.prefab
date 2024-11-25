@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8690818299522466702}
   m_Layer: 0
   m_Name: NarrowItem
-  m_TagString: Item
+  m_TagString: HarmfulItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

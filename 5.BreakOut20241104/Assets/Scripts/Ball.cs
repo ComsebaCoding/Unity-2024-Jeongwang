@@ -61,7 +61,12 @@ public class Ball : MonoBehaviour
         if (other.gameObject.CompareTag("Floor"))
         {
             GameManager.instance.Damage();
+            GameManager.instance.GetResource().PlayOutSound();
             Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            GameManager.instance.GetResource().PlayHit1Sound();
         }
     }
 

@@ -85,16 +85,18 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        // ?
+        GameManager.instance.GetResource().PlayHit1Sound();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         // æ∆¿Ã≈€ »πµÊ
-        if (other.gameObject.CompareTag("Item"))
+        if (other.gameObject.CompareTag("BeneficialItem"))
         {
-            Item hitItem = other.gameObject.GetComponent<Item>();
-            hitItem.ActiveItem(this);
+            GameManager.instance.GetResource().PlayPowerUpSound();
         }
+        Item hitItem = other.gameObject.GetComponent<Item>();
+        if (hitItem) 
+            hitItem.ActiveItem(this);
     }
 }

@@ -7,6 +7,9 @@ TagManager:
   - Ball
   - Floor
   - Item
+  - BeneficialItem
+  - HarmfulItem
+  - Wall
   layers:
   - Default
   - TransparentFX

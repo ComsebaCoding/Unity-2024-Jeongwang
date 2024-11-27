@@ -23,13 +23,15 @@ public class GameManager : MonoBehaviour
     public Image LifeUIPrefab;
     public List<Image> LifeList;
 
+    public Text SafeGuardText;
+
     ResourceManager resourceManager;
     private void Start()
     {
         resourceManager = GetComponent<ResourceManager>();
         Time.timeScale = 1.0f;
         GameOverUI.SetActive(false);
-
+        SafeGuardText.gameObject.SetActive(false);
 
         for (int i = 1; i <= Life; ++i)
         {
@@ -38,6 +40,23 @@ public class GameManager : MonoBehaviour
                 GameObject.Find("Canvas").transform));
             LifeList[i-1].rectTransform.anchoredPosition = 
                 new Vector3(-275.0f + (i * 100.0f), 485.0f);
+        }
+    }
+
+    private void Update()
+    {
+        // GameObject safeGuard = GameObject.Find("SafeGuard");
+        SafeGuard safeGuard = GameObject.FindObjectOfType<SafeGuard>();
+        if (safeGuard)
+        {
+            // 최적화 내다 버린 성능 구린 코드... 리팩토링이 필요하다!
+            int textTime = (int)safeGuard.GetRemainTime() + 1;
+            SafeGuardText.text = "SAFEGUARD : " + textTime + "s";
+            SafeGuardText.gameObject.SetActive(true);
+        }
+        else
+        {
+            SafeGuardText.gameObject.SetActive(false);
         }
     }
 

@@ -23,6 +23,14 @@ public class Ball : MonoBehaviour
         //myRigid.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
+    public void Clone()
+    {
+        Ball ball = Instantiate(
+            GameManager.instance.ballPrefab, 
+            transform.position, Quaternion.identity);
+        ball.playing = true;
+    }
+
     public void SetVelocity(Vector2 value)
     {
         if (myRigid == null)
@@ -60,7 +68,8 @@ public class Ball : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Floor"))
         {
-            GameManager.instance.Damage();
+            if (count == 1)
+                GameManager.instance.Damage();
             GameManager.instance.GetResource().PlayOutSound();
             Destroy(gameObject);
         }

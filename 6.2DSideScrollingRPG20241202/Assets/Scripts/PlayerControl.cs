@@ -73,7 +73,7 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse1) && stat.GetStamina() >= 10)
             {
-                stat.ConsumStamina(10);
+                stat.ConsumStamina(25.0f);
                 DashStep(GetMouseWorldPosition());
             }
         }

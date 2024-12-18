@@ -67,10 +67,10 @@ public class PlayerControl : MonoBehaviour
     {
         AttackDirection = GetMouseWorldPosition() - transform.position;
         AttackDirection.Normalize();
-        float angle = Mathf.Atan2(AttackDirection.y,
-            AttackDirection.x) * Mathf.Rad2Deg;
         AttackDirectionRT.transform.rotation
-            = Quaternion.AngleAxis(angle, Vector3.forward);
+            = Quaternion.AngleAxis(
+                Mathf.Atan2(AttackDirection.y, AttackDirection.x) * Mathf.Rad2Deg, 
+                Vector3.forward);
 
         
 

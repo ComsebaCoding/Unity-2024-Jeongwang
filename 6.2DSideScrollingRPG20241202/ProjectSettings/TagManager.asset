@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - MovableZone
+  - UI
+  - Monster
+  - Item
   layers:
   - Default
   - TransparentFX

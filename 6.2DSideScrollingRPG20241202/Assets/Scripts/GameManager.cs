@@ -59,4 +59,10 @@ public class GameManager : MonoBehaviour
         Application.Quit(); // 어플리케이션 종료, 게임 런타임
 #endif
     }
+
+    public void assert(string error_log)
+    {
+        Debug.Log(error_log);
+        ExitGame();
+    }
 }

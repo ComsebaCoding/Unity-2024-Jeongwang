@@ -8,24 +8,31 @@ public class PlayerControl : MonoBehaviour
     enum CharacterAction
     {
         idle = 0,
-
+        meleeAttack,
+        shotAttack,
+        throwAttack,
         ActionCount
     }
 
     Camera mainCamera;
     PlayerStatus stat;
 
+    SpriteRenderer playerSr;
+    Animator playerAnimator;
     Rigidbody2D playerRigidbody;
 
     Vector2 MovingDirection;
-    Vector2 AttackDirection;
-    RectTransform AttackDirectionRT;
+    Vector2 MouseDirection;
+    Transform MouseDirectionObject;
+    Transform WeaponPivot;
+
+
     Vector3 dashTarget;
     float dashStepTimer = 0.0f; // 대쉬 진행중
     public float dashStepLimitTime = 0.5f;  // 대쉬 총 제한 시간
 
     public float movingSpeed = 3.0f;    // 일반 이동 속도
-    public float dashStepSpeed = 10.0f; // 대쉬 스텝 중 돌진 속도
+    public float dashStepSpeed = 100.0f; // 대쉬 스텝 중 돌진 속도
     public float jumpPower = 250.0f;      // 점프력
 
     public bool isJump = false;
@@ -35,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     {
         return mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
+
     public void Jump()
     {
         if (playerRigidbody != null && isJump == false)
@@ -54,40 +62,50 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AttackDirectionRT = GameObject.Find("AttackDirectionCanvas").GetComponent<RectTransform>();
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        MouseDirectionObject = GameObject.Find("MouseDirection").transform;
+        WeaponPivot = transform.Find("WeaponPivot");
+        playerSr = GetComponent<SpriteRenderer>();
         playerRigidbody = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
         stat = GetComponent<PlayerStatus>();
-        AttackDirection = new Vector2(1.0f, 0.0f);
-        AttackDirection.Normalize();
+        MouseDirection = new Vector2(1.0f, 0.0f);
+        MouseDirection.Normalize();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AttackDirection = GetMouseWorldPosition() - transform.position;
-        AttackDirection.Normalize();
-        AttackDirectionRT.transform.rotation
+        MouseDirection = GetMouseWorldPosition() - transform.position;
+        MouseDirectionObject.rotation
             = Quaternion.AngleAxis(
-                Mathf.Atan2(AttackDirection.y, AttackDirection.x) * Mathf.Rad2Deg, 
+                Mathf.Atan2(MouseDirection.y, MouseDirection.x) * Mathf.Rad2Deg, 
                 Vector3.forward);
+        //MouseDirection.Normalize();
+
+        playerSr.flipX = (MouseDirection.x < 0);
+
+        WeaponPivot.rotation
+            = Quaternion.Euler(
+                new Vector3(
+                0.0f,
+                (playerSr.flipX) ? -1.0f : 1.0f,
+                0.0f)); ;
 
         
-
-
-
+        // 대쉬 상태
         if (isDashStep)
         {
             dashStepTimer += Time.deltaTime;
             MovingDirection = dashTarget - transform.position;
-            transform.Translate(MovingDirection * dashStepSpeed * Time.deltaTime);
+            transform.Translate(MovingDirection.normalized * dashStepSpeed * Time.deltaTime);
         }
         else
         {
             MovingDirection = Vector2.zero;
             MovingDirection.x += Input.GetKey(KeyCode.A) ? -1 : 0;
             MovingDirection.x += Input.GetKey(KeyCode.D) ? 1 : 0;
-            transform.Translate(MovingDirection * movingSpeed * Time.deltaTime);
+            transform.Translate(MovingDirection.normalized * movingSpeed * Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -100,6 +118,13 @@ public class PlayerControl : MonoBehaviour
                 DashStep(GetMouseWorldPosition());
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            playerAnimator.SetBool("isAttack", true);
+
+        }
+
         if (dashStepTimer >= dashStepLimitTime)
         {
             dashStepTimer = 0.0f;
@@ -133,5 +158,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("MovableZone"))
             isJump = true;
+    }
+
+    public void AttackExit()
+    {
+        playerAnimator.SetBool("isAttack", false);
     }
 }

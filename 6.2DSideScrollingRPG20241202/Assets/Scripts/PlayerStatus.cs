@@ -13,6 +13,14 @@ public class PlayerStatus : MonoBehaviour
         MAXCOUNT
     }
 
+    enum AttackAnimationType
+    {
+        SwingAttack = 0,
+        StingAttack,
+        ShotAttack,
+        AttackTypeCount
+    }
+
     CharacterType playerType = CharacterType.Novice;  // 내 캐릭터
     Status Stat;
     int Exp = 0;            // Experience

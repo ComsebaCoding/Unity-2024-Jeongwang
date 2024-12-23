@@ -11,10 +11,10 @@ public class Status
 
     public float curHP = 100.0f;
     public float MAX_HP = 100.0f;
-    public float HpRegenRate = 5.0f;    // 체력 회복 계수
+    public float HpRegenRate = 1.0f;    // 체력 회복 계수
     public float curMP = 100.0f;
     public float MAX_MP = 100.0f;
-    public float MpRegenRate = 5.0f;    // 마나 회복 계수
+    public float MpRegenRate = 2.0f;    // 마나 회복 계수
     public float curSTAMINA = 100.0f;
     public float MAX_STAMINA = 100.0f;
     public float StaminaRegenRate = 5.0f;   // 스태미나 회복 계수

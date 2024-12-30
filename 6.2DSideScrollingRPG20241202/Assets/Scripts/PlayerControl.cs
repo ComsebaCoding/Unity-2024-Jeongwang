@@ -59,12 +59,24 @@ public class PlayerControl : MonoBehaviour
         dashTarget = targetPosition;
     }
 
+    public void NormalMeleeAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            playerAnimator.SetBool("isAttack", true);
+        }
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         MouseDirectionObject = GameObject.Find("MouseDirection").transform;
         WeaponPivot = transform.Find("WeaponPivot");
+        if (WeaponPivot == null)
+        {
+            WeaponPivot = MouseDirectionObject.Find("WeaponPivot");
+        }
         playerSr = GetComponent<SpriteRenderer>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
@@ -119,18 +131,14 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            playerAnimator.SetBool("isAttack", true);
-
-        }
+        NormalMeleeAttack();
 
         if (dashStepTimer >= dashStepLimitTime)
         {
             dashStepTimer = 0.0f;
             isDashStep = false;
         }
-        if (transform.position.y < - 100.0f)
+        if (transform.position.y < -100.0f)
         {
             transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         }

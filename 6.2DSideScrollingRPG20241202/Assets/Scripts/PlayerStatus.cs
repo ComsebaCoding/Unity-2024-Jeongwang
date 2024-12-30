@@ -62,6 +62,25 @@ public class PlayerStatus : MonoBehaviour
         Stat.Damaged(damage);
     }
 
+    public float GetPhysicalAttack()
+    {
+        return Stat.PhysicalAttack;
+    }
+
+    public float GetMagicalAttack()
+    {
+        return Stat.MagicalAttack;
+    }
+
+    public float GetPhysicalDefense()
+    {
+        return Stat.PhysicalDefense;
+    }
+
+    public float GetMagicalDefense()
+    {
+        return Stat.MagicalDefense;
+    }
 
     public void ConsumStamina(float consumption)
     {

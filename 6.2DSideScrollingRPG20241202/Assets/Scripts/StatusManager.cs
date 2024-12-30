@@ -12,19 +12,23 @@ public class Status
     public float curHP = 100.0f;
     public float MAX_HP = 100.0f;
     public float HpRegenRate = 1.0f;    // 체력 회복 계수
+
     public float curMP = 100.0f;
     public float MAX_MP = 100.0f;
     public float MpRegenRate = 2.0f;    // 마나 회복 계수
+
     public float curSTAMINA = 100.0f;
     public float MAX_STAMINA = 100.0f;
     public float StaminaRegenRate = 5.0f;   // 스태미나 회복 계수
 
-    public int PhysicalAttack = 5;     // 물리 공격력
-    public int MagicalAttack = 5;      // 마법 공격력
-    public int PhysicalDefense = 3;    // 물리 방어력
-    public int MagicalDefense = 3;     // 마법 방어력
-    public int Agility = 5;            // 민첩성
-    public int Speed = 5;              // 스탯 속도
+    public float PhysicalAttack = 5;     // 물리 공격력
+    public float MagicalAttack = 5;      // 마법 공격력
+
+    public float PhysicalDefense = 3;    // 물리 방어력
+    public float MagicalDefense = 3;     // 마법 방어력
+
+    public float Agility = 5;            // 민첩성
+    public float Speed = 5;              // 스탯 속도
 
     public Status()
     {

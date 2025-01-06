@@ -21,11 +21,12 @@ public class GameManager : MonoBehaviour
         // 이름이 같은 오브젝트가 여럿인 경우 가장 처음 검색된 Object 하나만을 반환
 #if CHEATMODE
         player = GameObject.Find("Player");
-#endif
+#else
         // 태그로 찾을 경우
         player = GameObject.FindWithTag("Player");
+#endif
         // 태그가 같은 오브젝트가 여럿인 경우 가장 처음 검색된 Object 하나만을 반환
-        
+
         // 같은 태그를 가진 Object 들을 배열 형태로 반환
         //GameObject[] GOTaglist = GameObject.FindGameObjectsWithTag("Tag");
 
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
         //PlayerControl plctrl = GameObject.FindObjectOfType<PlayerControl>();
         // 컴포넌트 배열 형태로 반환
         //PlayerControl[] pclist = GameObject.FindObjectsOfType<PlayerControl>();
-        
+
         // 활성화된 상위 오브젝트로 자식 오브젝트 찾기
         //GameObject childbyName = player.transform.Find("HideChild").gameObject;
         //GameObject childbyNumber = player.transform.GetChild(0).gameObject;

@@ -21,7 +21,7 @@ public class WindowManager : MonoBehaviour
         LeftHand,       // 왼손 (서브웨폰)
         
         // Armors
-        TopArmor = 11,       // 상의
+        TopArmor = 11,  // 상의
         DownArmor,      // 하의
         Head,           // 머리
         Face,           // 얼굴(가면)
@@ -41,32 +41,33 @@ public class WindowManager : MonoBehaviour
         Rings3
     };
 
-    bool equipwindow = false;
-    GameObject equipmentUI;
-    List<uint> EquipmentByItemID;
+    // --- 스테이터스 창 관련 ---
+    bool isStatusWindowOpen = false;
+    GameObject StatusUI;
+    void StatusWindowToggle()
+    {
+        isStatusWindowOpen = !isStatusWindowOpen;
+        StatusUI.SetActive(isStatusWindowOpen);
+    }
 
-    bool inventory = false;
-    GameObject inventoryUI;
+    // --- 인벤토리 관련 ---
+    bool isInventoryWindowOpen = false;
+    GameObject InventoryUI;
     List<uint> InventoryByItemID;
-
-    void InventoryOpen()
+    void InventoryWindowToggle()
     {
-        inventoryUI.SetActive(true);
-        // 인벤토리 id에 따라 이미지 오브젝트를 만들어 출력하자
-    }
-    void InventoryClose()
-    {
-        inventoryUI.SetActive(false);
-    }
-    
-    void EquipmentOpen()
-    {
-
+        isInventoryWindowOpen = !isInventoryWindowOpen;
+        StatusUI.SetActive(isInventoryWindowOpen);
     }
 
-    void EquipmentClose()
+    // --- 장비창 관련 ---
+    bool isEquipWindowOpen = false;
+    GameObject EquipmentUI;
+    List<uint> EquipmentByItemID;
+    void EquipmentWindowToggle()
     {
-
+        isInventoryWindowOpen = !isInventoryWindowOpen;
+        EquipmentUI.SetActive(isInventoryWindowOpen);
     }
 
     void Equipment(uint ID)
@@ -74,21 +75,33 @@ public class WindowManager : MonoBehaviour
         ItemType t = ItemType.Equipment; // t = FindItemByid(ID).type();
         if (t != ItemType.Equipment)
             return;
-        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isStatusWindowOpen = false;
+        StatusUI = GameObject.Find("Player Status");
+        isInventoryWindowOpen = false;
+        InventoryUI = GameObject.Find("Inventory");
+        isEquipWindowOpen = false;
+        EquipmentUI = GameObject.Find("Equipment");
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(Input.GetKey(KeyCode.I))
+    {      
+        if (Input.GetKey(KeyCode.P))
         {
-            if (inventory) InventoryOpen(); else InventoryClose();
+            StatusWindowToggle();
+        }
+        if (Input.GetKey(KeyCode.U))
+        {
+            EquipmentWindowToggle();
+        }
+        if (Input.GetKey(KeyCode.I))
+        {
+            InventoryWindowToggle();
         }
     }
 }

@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
         meleeAttack,
         shotAttack,
         throwAttack,
+
         ActionCount
     }
 
@@ -32,11 +33,14 @@ public class PlayerControl : MonoBehaviour
     public float dashStepLimitTime = 0.5f;  // 대쉬 총 제한 시간
 
     public float movingSpeed = 3.0f;    // 일반 이동 속도
-    public float dashStepSpeed = 100.0f; // 대쉬 스텝 중 돌진 속도
+    public float dashStepSpeed = 1000.0f; // 대쉬 스텝 중 돌진 속도
     public float jumpPower = 250.0f;      // 점프력
 
     public bool isJump = false;
     public bool isDashStep = false;
+
+    // private float dash_available_time = 0.1f;
+    bool isDashMove = false;
 
     Vector3 GetMouseWorldPosition()
     {
@@ -48,7 +52,7 @@ public class PlayerControl : MonoBehaviour
         if (playerRigidbody != null && isJump == false)
         {
             Debug.Log("점프!");
-            playerRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Force);
+            playerRigidbody.AddForce(Vector2.up * jumpPower * Time.deltaTime, ForceMode2D.Impulse);
         }
     }
 
@@ -57,6 +61,7 @@ public class PlayerControl : MonoBehaviour
         Debug.Log("대쉬스텝");
         isDashStep = true;
         dashTarget = targetPosition;
+        playerRigidbody.AddForce((dashTarget - transform.position).normalized * dashStepSpeed * Time.deltaTime, ForceMode2D.Impulse);
     }
 
     public void NormalMeleeAttack()
@@ -105,19 +110,21 @@ public class PlayerControl : MonoBehaviour
                 0.0f)); ;
 
         
-        // 대쉬 상태
+        // 대쉬스텝 상태
         if (isDashStep)
         {
             dashStepTimer += Time.deltaTime;
-            MovingDirection = dashTarget - transform.position;
-            transform.Translate(MovingDirection.normalized * dashStepSpeed * Time.deltaTime);
+            //MovingDirection = dashTarget - transform.position;
+            //transform.Translate(MovingDirection.normalized * dashStepSpeed * Time.deltaTime);
         }
         else
         {
+            if (isDashMove = Input.GetKey(KeyCode.LeftShift)) 
+                stat.ConsumeStamina(10.0f * Time.deltaTime);
             MovingDirection = Vector2.zero;
             MovingDirection.x += Input.GetKey(KeyCode.A) ? -1 : 0;
             MovingDirection.x += Input.GetKey(KeyCode.D) ? 1 : 0;
-            transform.Translate(MovingDirection.normalized * movingSpeed * Time.deltaTime);
+            transform.Translate(MovingDirection.normalized * movingSpeed * ((isDashMove) ? 3.0f : 1.0f) * Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -126,7 +133,7 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse1) && stat.GetStamina() >= 10)
             {
-                stat.ConsumStamina(25.0f);
+                stat.ConsumeStamina(25.0f);
                 DashStep(GetMouseWorldPosition());
             }
         }

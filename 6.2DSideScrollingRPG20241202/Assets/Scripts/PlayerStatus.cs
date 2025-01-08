@@ -82,7 +82,7 @@ public class PlayerStatus : MonoBehaviour
         return Stat.MagicalDefense;
     }
 
-    public void ConsumStamina(float consumption)
+    public void ConsumeStamina(float consumption)
     {
         Stat.ConsumeStamina(consumption);
     }
